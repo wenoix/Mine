@@ -1,0 +1,584 @@
+/* Переменные для цветов и шрифтов (Stream Mine / Анархия-стиль) */
+:root {
+    --primary-color: #9b00e3; /* Фиолетовый / маджента, как у Twitch */
+    --secondary-color: #6a00a1; /* Темнее основного */
+    --accent-color: #00e3a4; /* Неоново-зеленый/бирюзовый для акцентов */
+    --text-color: #e0e0e0; /* Светлый текст */
+    --dark-bg-color: #0a0a0a; /* Очень темный, почти черный фон */
+    --card-bg-color: #1c1c1c; /* Фон для блоков контента, чуть темнее */
+    --border-color: #383838; /* Темные границы */
+    --section-bg-opacity: 0.9; /* Почти непрозрачный фон для секций */
+}
+
+/* Базовые стили */
+body {
+    font-family: 'Roboto Mono', monospace; /* Моноширинный шрифт для "хакерского" вида */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--dark-bg-color);
+    background-image: url('assets/bg_streammine.jpg'); /* Замените на свое фоновое изображение: киберпанк, темные текстуры, абстракция */
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+}
+
+/* Стили для заголовков с игровым шрифтом */
+h1, h2, h3 {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.8); /* Более сильная тень */
+    text-align: center;
+    text-transform: uppercase; /* Всегда в верхнем регистре */
+}
+
+h1 { font-size: 2.8em; }
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.6em; }
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px var(--accent-color); /* Свечение при наведении */
+}
+
+.container {
+    width: 90%;
+    max-width: 1280px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Кнопки */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 3px; /* Менее закругленные */
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 2px solid var(--primary-color); /* Рамка */
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+    border-color: var(--accent-color); /* Меняем цвет рамки при наведении */
+}
+
+.btn-secondary {
+    background-color: transparent; /* Прозрачный фон */
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-color);
+    color: var(--dark-bg-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.button-center {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* --- Шапка сайта --- */
+.main-header {
+    background-color: rgba(0, 0, 0, 0.7); /* Более прозрачная шапка */
+    padding: 15px 0;
+    border-bottom: 3px solid var(--primary-color);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.7); /* Более темная тень */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo img {
+    height: 60px;
+    margin-right: 15px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 2.2em;
+    color: var(--accent-color);
+    text-shadow: none;
+    text-transform: uppercase;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 5px 0;
+    position: relative;
+    font-size: 1.1em;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.server-status {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px 15px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.95em;
+    color: var(--accent-color); /* Используем акцентный цвет для онлайна */
+    border: 1px solid var(--accent-color); /* Цвет рамки статуса */
+    text-shadow: 0 0 5px rgba(0, 227, 164, 0.5); /* Неоновое свечение */
+}
+.server-status #player-count {
+    color: #00ff00; /* Зеленый для числа игроков */
+}
+
+.copy-icon {
+    margin-left: 8px;
+    font-size: 0.9em;
+}
+
+/* --- Главное содержимое --- */
+.main-content {
+    padding: 40px 0;
+}
+
+.section-padded {
+    background-color: rgba(var(--dark-bg-color), var(--section-bg-opacity));
+    padding: 60px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+.section-dark { /* Основная секция для контента */
+    background-color: rgba(var(--card-bg-color), var(--section-bg-opacity));
+    padding: 60px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('assets/hero_streammine.jpg') no-repeat center center/cover; /* Добавьте свое изображение для hero */
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+    border-bottom: 5px solid var(--primary-color);
+    margin-bottom: 40px;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.9);
+}
+.hero-section h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    color: var(--accent-color); /* Заголовок акцентным цветом */
+    text-shadow: 3px 3px 7px rgba(0,0,0,0.8);
+}
+.hero-section p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* Сетка особенностей (features) */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.feature-item {
+    background-color: var(--card-bg-color);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.feature-item img {
+    height: 80px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 8px var(--accent-color)); /* Более сильное свечение иконок */
+}
+
+.feature-item h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    text-shadow: none;
+    text-transform: uppercase;
+}
+
+/* Intro text на странице "О сервере" */
+.intro-text {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #ccc;
+}
+
+
+/* --- Стили для секций контента (бывшие Правила) --- */
+.rules-section { /* Переименован в about-section по смыслу, но класс остался для сохранения стилей */
+    background-color: var(--card-bg-color);
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.rules-section h3 {
+    text-align: left;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-family: 'Roboto Mono', monospace; /* Моноширинный шрифт для заголовков правил */
+    text-transform: uppercase;
+}
+
+.rules-section ol, .rules-section ul {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.rules-section li {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.rules-section li strong {
+    color: var(--accent-color);
+}
+
+.rules-section p {
+    margin-top: 10px;
+    font-size: 0.95em;
+    color: #aaa;
+}
+
+.note {
+    text-align: center;
+    font-style: italic;
+    color: #aaa;
+    margin-top: 40px;
+}
+
+/* --- Стили для Доната (Поддержка) --- */
+.donate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.donate-card {
+    background-color: var(--card-bg-color);
+    border-radius: 5px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.donate-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.donate-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+.donate-card .price {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 5px rgba(155, 0, 227, 0.7); /* Неоновое свечение для цены */
+}
+
+.donate-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.donate-card ul li {
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    color: #ddd;
+}
+.donate-card ul li::before {
+    content: "⚡ "; /* Молния вместо крестика/галочки */
+    color: var(--accent-color); /* Неоновый цвет */
+    font-weight: bold;
+}
+
+.donate-card .btn-primary {
+    width: 100%;
+    font-size: 1.1em;
+}
+
+/* --- Подвал сайта --- */
+.main-footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: var(--text-color);
+    padding: 30px 0;
+    margin-top: 50px;
+    border-top: 3px solid var(--primary-color);
+    text-align: center;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.7);
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.main-footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.social-links a {
+    color: var(--text-color);
+    margin-left: 20px;
+    font-size: 1em;
+    border-bottom: 1px solid transparent;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 992px) {
+    .main-header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-nav ul {
+        margin-top: 20px;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .header-actions {
+        margin-top: 20px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-section h2 {
+        font-size: 2.8em;
+    }
+
+    .content-grid, .news-grid, .features-grid, .donate-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-footer .container {
+        flex-direction: column;
+    }
+
+    .social-links {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 1.8em; }
+    h3 { font-size: 1.4em; }
+
+    .main-header .logo h1 {
+        font-size: 1.8em;
+    }
+
+    .hero-section h2 {
+        font-size: 2em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+
+    .section-padded, .section-dark {
+        padding: 40px 0;
+    }
+
+    .rules-section, .donate-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header .logo img {
+        height: 45px;
+    }
+    .main-header .logo h1 {
+        font-size: 1.5em;
+    }
+
+    .main-nav ul li {
+        margin: 0 8px;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .server-status {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+}
+/* Дополнительные стили для кнопки Telegram на странице поддержки */
+.call-to-action-donate {
+    background-color: var(--card-bg-color);
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.call-to-action-donate h3 {
+    color: var(--accent-color);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px rgba(0, 227, 164, 0.5);
+}
+
+.call-to-action-donate p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: #ccc;
+}
+
+.call-to-action-donate .telegram-btn {
+    background-color: #0088cc; /* Цвет Telegram */
+    border-color: #0088cc;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    display: inline-flex; /* Для выравнивания иконки */
+    align-items: center;
+    justify-content: center;
+}
+
+.call-to-action-donate .telegram-btn:hover {
+    background-color: #006699;
+    border-color: #006699;
+    transform: translateY(-3px);
+}
+
+.telegram-icon {
+    margin-left: 10px;
+    font-size: 1.3em;
+}
+
+.call-to-action-donate .small-text {
+    font-size: 0.85em;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+/* Изменения для donate-card */
+.donate-card ul li::before {
+    content: "⚡ "; /* Молния вместо крестика/галочки */
+    color: var(--accent-color); /* Неоновый цвет */
+    font-weight: bold;
+}
